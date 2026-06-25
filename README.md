@@ -1,6 +1,5 @@
 # Liquid Glass Effect for Niri
 
-This directory contains only the modified files from niri for the liquid glass effect.
 <img width="1920" height="1080" alt="Screenshot from 2026-06-25 15-20-23" src="https://github.com/user-attachments/assets/3f0946b6-ddc0-43b2-858d-6cf89b452a0a" />
 <img width="1920" height="1080" alt="Screenshot from 2026-06-25 15-20-08" src="https://github.com/user-attachments/assets/b3e1442d-6f4c-4580-9c6a-48bb9ea17dd0" />
 ## Files
