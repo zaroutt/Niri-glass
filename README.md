@@ -26,22 +26,21 @@ This directory contains only the modified files from niri for the liquid glass e
 
 ## How to Apply
 
-1. Copy files to the niri directory:
-   ```bash
-   cp src/render_helpers/liquid_glass.rs /home/za/niri/src/render_helpers/
-   cp src/render_helpers/shaders/clipped_surface.frag /home/za/niri/src/render_helpers/shaders/
-   # ... etc
-   ```
+Clone the repo and run the install script:
+```bash
+git clone https://github.com/your-username/liquid-glass-niri.git
+cd liquid-glass-niri
+```
+```bash
+./install.sh /path/to/niri/src
+```
 
-2. Recompile niri:
-   ```bash
-   cd /home/za/niri && cargo build --release
-   ```
+If no path is provided, defaults to `~/niri`. The script copies all modified files, recompiles niri, and installs the binary.
 
-3. Copy the binary:
-   ```bash
-   sudo cp /home/za/niri/target/release/niri /usr/bin/niri
-   ```
+### Manual steps
+1. Copy files to your niri `src/` directory
+2. Run `cargo build --release` in the niri source
+3. Copy `target/release/niri` to `/usr/bin/niri` (requires sudo)
 
 ## Configuration
 
