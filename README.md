@@ -1,11 +1,14 @@
 # Liquid Glass Effect for Niri
 
 This directory contains only the modified files from niri for the liquid glass effect.
-
+<img width="1920" height="1080" alt="Screenshot from 2026-06-25 15-20-23" src="https://github.com/user-attachments/assets/3f0946b6-ddc0-43b2-858d-6cf89b452a0a" />
+<img width="1920" height="1080" alt="Screenshot from 2026-06-25 15-20-08" src="https://github.com/user-attachments/assets/b3e1442d-6f4c-4580-9c6a-48bb9ea17dd0" />
 ## Files
 
+
 ### Shader
-- `src/render_helpers/shaders/clipped_surface.frag` - Main liquid glass effect shader (based on kwin-effects-glass + HyprGlass)
+- `src/render_helpers/shaders/clipped_surface.frag` - Main liquid glass effect shader (based on [kwin-effects-glass](https://github.com/4v3ngR/kwin-effects-glass))
+
 
 ### Rust (rendering)
 - `src/render_helpers/liquid_glass.rs` - `LiquidGlassOptions` struct with effect parameters
@@ -49,26 +52,16 @@ window-rule {
         blur true
         xray true
         liquid-glass {
-            refraction-strength 1.0
-            power-factor 3.0
-            refraction-power 0.6
+            refraction-strength 3.0
+            power-factor 10
+            refraction-power 1.0
         }
     }
 }
 ```
+these are the best parameters that i've found. higher refraction strength doenst make look better and the parameters "glow-edge" in my test dont affect anything
+- through layer rules it can also effect the bar and dock
 
-## Parameters
+## Warnings 
+- Vibe coded project so expect weirdly behavior.
 
-| Parameter | Range | Default | Description |
-|-----------|-------|---------|-------------|
-| `refraction-strength` | 0-100 | 1.0 | Refraction intensity |
-| `power-factor` | 1-10 | 3.0 | Lens curvature shape |
-| `refraction-power` | 0-100 | 0.6 | Normal scale for refraction |
-| `glow-weight` | -100-100 | 0.08 | Edge glow intensity |
-| `edge-lighting` | 0-100 | 1.0 | Edge lighting effect |
-| `fringing` | 0-100 | 0.3 | Chromatic aberration |
-| `lens-distortion` | 0-100 | 0.5 | Center dome magnification |
-| `brightness` | 0-100 | 1.0 | Brightness multiplier |
-| `contrast` | 0-100 | 1.0 | Contrast adjustment |
-| `saturation` | 0-100 | 0.85 | Saturation level |
-| `vibrancy` | 0-100 | 0.12 | Selective saturation boost |
