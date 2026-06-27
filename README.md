@@ -29,7 +29,7 @@
 
 Clone the repo and run the install script:
 ```bash
-git clone https://github.com/your-username/liquid-glass-niri.git
+git clone https://github.com/zaroutt/liquid-glass-niri.git
 cd liquid-glass-niri
 ```
 ```bash
