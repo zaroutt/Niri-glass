@@ -135,6 +135,10 @@ GlassFragment glassRefraction(vec2 uv_tex, vec2 uv_min, vec2 uv_max, vec2 positi
     float modeMix = clamp(lg_physical_refraction, 0.0, 1.0);
     vec2 baseOffset = mix(kwinOffset, hyprOffset, modeMix);
 
+    // Fix Y-axis: position space has Y inverted relative to UV space
+    // (see position.y = -position.y in glass_effect).
+    baseOffset.y = -baseOffset.y;
+
     // Glass normal for outline effects
     vec2 normalXY = mix(kwinNormal, inwardDir, modeMix) * edgeProximity * refractionStrength * 0.5;
     vec3 glassNormal = normalize(vec3(normalXY, 1.0));
@@ -197,6 +201,9 @@ GlassFragment snellsRefraction(vec2 uv_tex, vec2 uv_min, vec2 uv_max, vec2 posit
     refractionMagnitude = min(refractionMagnitude, maxOffsetPx);
     vec2 uvScale = 1.0 / (halfBlurSize * 2.0);
     vec2 baseOffset = inwardDir * refractionMagnitude * uvScale;
+
+    // Fix Y-axis: position space has Y inverted relative to UV space.
+    baseOffset.y = -baseOffset.y;
     float eps = min(bandWidth * 0.75, min(min(cornerRadius.x, cornerRadius.y), min(cornerRadius.z, cornerRadius.w)) * 0.6);
     float dxp = roundedRectangleDist(position + vec2(eps, 0.0), halfBlurSize, cornerRadius);
     float dxn = roundedRectangleDist(position - vec2(eps, 0.0), halfBlurSize, cornerRadius);
@@ -238,6 +245,9 @@ GlassFragment diluteRefraction(vec2 uv_tex, vec2 uv_min, vec2 uv_max, vec2 posit
     float magnitudePixels = concaveFactor * clamp(refractionStrength, 0.0, 1.0) * maxOffsetPixels;
     vec2 uvScale = 1.0 / (halfBlurSize * 2.0);
     vec2 offset = dirIn * magnitudePixels * uvScale;
+
+    // Fix Y-axis: position space has Y inverted relative to UV space.
+    offset.y = -offset.y;
     vec2 c0 = clamp(uv_tex + offset * 0.25, uv_min, uv_max);
     vec2 c1 = clamp(uv_tex + offset * 0.50, uv_min, uv_max);
     vec2 c2 = clamp(uv_tex + offset * 0.75, uv_min, uv_max);
